@@ -5,8 +5,108 @@ import { Header } from "../components/Header";
 import siteData from "../data";
 import { Global, css } from "@emotion/react";
 import { HeroSection } from "../components/HeroSection";
+import { FAQSection } from "../components/FAQSection/FAQSection";
+
+type TestimonialItemType = {
+  name: string;
+  position: string;
+  text: string;
+};
+
+type TestimonialsBlockType = {
+  id: string;
+  type: "testimonials";
+  title: string;
+  subtitle?: string;
+  testimonials: Array<TestimonialItemType>;
+};
+
+type FAQItemType = {
+  question: string;
+  answer: string;
+};
+
+type FAQBlockType = {
+  id: string;
+  type: "faq";
+  title: string;
+  subtitle?: string;
+  questions: FAQItemType[];
+};
+
+type FeatureItemType = {
+  title: string;
+  subtitle: string;
+  icon: string; // Feather Icon key
+};
+
+type FeaturesBlockType = {
+  id: string;
+  type: "features";
+  title: string;
+  subtitle?: string;
+  features: FeatureItemType[];
+};
+
+type CallToActionBlockType = {
+  id: string;
+  type: "callToAction";
+  title: string;
+  subtitle?: string;
+  callToAction: string;
+};
+
+type ContactBlockType = {
+  id: string;
+  type: "contact";
+  title: string;
+  subtitle?: string;
+};
+
+type NavMenuItemType = {
+  title: string;
+  blockId: string;
+};
+
+type NavMenuType = {
+  items: NavMenuItemType[];
+};
+
+type ContentBlockAlignment = "left" | "right";
+
+type ContentBlockType = {
+  id: string;
+  type: "content";
+  title: string;
+  subtitle?: string;
+  content: string;
+  alignment: ContentBlockAlignment;
+};
+
+type BlockType =
+  | TestimonialsBlockType
+  | FAQBlockType
+  | FeaturesBlockType
+  | CallToActionBlockType
+  | ContactBlockType
+  | ContentBlockType;
 
 const IndexPage: React.FC<PageProps> = () => {
+  const blocksList = siteData.blocks as BlockType[];
+  const renderBlock = React.useCallback((block: BlockType) => {
+    if (block.type === "faq") {
+      const faqBlockData: FAQBlockType = block;
+
+      return (
+        <FAQSection
+          title={faqBlockData.title}
+          subtitle={faqBlockData.subtitle}
+          questions={faqBlockData.questions}
+        />
+      );
+    }
+  }, []);
+
   return (
     <>
       <Global
@@ -46,6 +146,7 @@ const IndexPage: React.FC<PageProps> = () => {
           subtitle={siteData.subtitle}
           callToAction={siteData.callToActions}
         />
+        {blocksList.map((block: BlockType) => renderBlock(block))}
       </main>
     </>
   );

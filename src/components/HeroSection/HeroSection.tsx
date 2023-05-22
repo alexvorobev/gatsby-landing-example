@@ -77,7 +77,7 @@ export const HeroSection: FC<HeroSectionProps> = ({
           <HeroSubtitle>{subtitle}</HeroSubtitle>
           <Button>{callToAction}</Button>
         </div>
-        <HeroImage src="https://images.pexels.com/photos/6929194/pexels-photo-6929194.jpeg" />
+        <HeroImage src="https://images.pexels.com/photos/4050325/pexels-photo-4050325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
       </HeroSectionContainer>
     </HeroSectionWrapper>
   );
