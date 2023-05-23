@@ -1,11 +1,16 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import { Header } from "../components/Header";
+import Header from '../partials/Header';
+import AOS from 'aos';
 
 import siteData from "../data";
 import { Global, css } from "@emotion/react";
 import { HeroSection } from "../components/HeroSection";
 import { FAQSection } from "../components/FAQSection/FAQSection";
+import HeroHome from "../partials/HeroHome";
+
+import 'aos/dist/aos.css';
+import '../css/style.css';
 
 type TestimonialItemType = {
   name: string;
@@ -107,6 +112,15 @@ const IndexPage: React.FC<PageProps> = () => {
     }
   }, []);
 
+  React.useEffect(() => {
+    AOS.init({
+      once: true,
+      disable: 'phone',
+      duration: 700,
+      easing: 'ease-out-cubic',
+    });
+  });
+
   return (
     <>
       <Global
@@ -136,11 +150,8 @@ const IndexPage: React.FC<PageProps> = () => {
         `}
       />
       <main>
-        <Header
-          items={siteData.navMenu.items}
-          title={siteData.title}
-          callToAction={siteData.callToActions}
-        />
+        <Header title={siteData.title} items={siteData.navMenu.items} />
+        <HeroHome />
         <HeroSection
           title={siteData.title}
           subtitle={siteData.subtitle}
