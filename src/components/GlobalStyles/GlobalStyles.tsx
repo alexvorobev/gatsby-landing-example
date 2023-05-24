@@ -17,6 +17,11 @@ export const GlobalStyles = () => (
         color: #1a202c;
         background-color: #fff;
     }
+
+    * {
+        box-sizing: border-box;
+    }
+
     a {
         color: #3182ce;
         text-decoration: none;
@@ -34,7 +39,7 @@ export const GlobalStyles = () => (
         --color-primary-dark: #2c5282;
         --color-secondary: rgba(241,245,249,.8);
         --color-secondary-light: #fbd38d;
-        --color-secondary-dark: rgba(226,232,240,.6);
+        --color-secondary-dark: rgba(226,232,240, 1);
         --color-tertiary: #90cdf4;
         --color-tertiary-light: #bee3f8;
         --color-tertiary-dark: #3182ce;

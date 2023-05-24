@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useTransition } from "react";
+import React, { FC, useCallback, useEffect, useTransition } from "react";
 import { HeaderProps, NavMenuItemType } from "./Header";
 import styled from "@emotion/styled";
 import { Button } from "../Button";
@@ -12,7 +12,7 @@ const HeaderWrapper = styled.div`
     padding-right: 1.25rem;
     border-bottom: 1px solid var(--color-divider);
     position: relative;
-    z-index: 3;
+    z-index: 5;
     background-color: #fff;
 `;
 
@@ -28,13 +28,13 @@ const MenuButton = styled(Button)`
     height: 2.5rem;
 `;
 
-const HeaderTitle = styled.div`
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex-grow: 1;
-`;
+    const HeaderTitle = styled.div`
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-grow: 1;
+    `;
 
 type HamburgerProps = {
     isOpen: boolean;
@@ -128,28 +128,64 @@ const Hamburger:FC<HamburgerProps> = ({ isOpen }) => {
 
 const MenuWrapper = styled.div`
     position: absolute;
+    z-index: 0;
     top: 100%;
-    left: 0;
+    left: 50%;
     width: 100%;
-    height: auto;
-`
+    max-width: calc(100vw - 1.75rem);
+    background-color: #fff;
+    padding: 1.75rem 1.25rem;
+    transform: translateX(-50%);
+    margin-top: 1.5rem;
+    border-radius: 1rem;
+    opacity: 0;
+    height: 0;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(15, 23, 42, 0.05) 0px 0px 0px 1px, rgba(224, 242, 254, 0.4) 0px 20px 25px -5px, rgba(224, 242, 254, 0.4) 0px 8px 10px -6px;
+    transition: height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    overflow: hidden;
+`;
+
+const MenuList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+`;
 
 type MenuProps = {
+    isOpen: boolean;
     items?: NavMenuItemType[];
     onItemClick?: () => void;
 }
 
-const Menu: FC<MenuProps> = ({ items, onItemClick }) => {
-    return <MenuWrapper>
-        {items?.map((item, index) => {
-            return <div key={index}>{item.title}</div>
-        })}
+const Menu: FC<MenuProps> = ({ isOpen, items, onItemClick }) => {
+    const menuRef = React.useRef<HTMLDivElement>(null);
+    const listRef = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if(!isOpen) {
+            menuRef.current!.style.height = '0px';
+            menuRef.current!.style.opacity = '0';
+        } else {
+            menuRef.current!.style.height = `${listRef.current!.offsetHeight + 64}px`;
+            menuRef.current!.style.opacity = '1';
+        }
+    }, [isOpen]);
+
+    return <MenuWrapper ref={menuRef}>
+        <MenuList ref={listRef}>
+            {items?.map((item, index) => {
+                return <div key={index}>{item.title}</div>
+            })}
+        </MenuList>
     </MenuWrapper>
 }
 
 export const MobileHeader: FC<HeaderProps> = ({
     title,
-    items
+    items,
+    callToAction
 }) => {
     const timeoutRef = React.useRef<NodeJS.Timeout | null>();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -176,12 +212,12 @@ export const MobileHeader: FC<HeaderProps> = ({
             <HeaderWrapper>
                 <HeaderTitle>{title}</HeaderTitle>
                 <RightSideGroup>
-                    <Button variant="secondary">Book</Button>
+                    {!!callToAction && <Button variant="secondary">{callToAction}</Button>}
                     <MenuButton onClick={toggleMenu} variant="secondary" rounded>
                         <Hamburger isOpen={isMenuOpen} />    
                     </MenuButton>
                 </RightSideGroup>
-                <Menu items={items?.items} />
+                {isContentDisplayed && <Menu isOpen={isMenuOpen} items={items} />}
             </HeaderWrapper>
         </HeaderStyleContext>
     );

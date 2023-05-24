@@ -17,6 +17,7 @@ const StyledButton = styled.button<Pick<ButtonProps, 'rounded' | 'variant'>>`
     background-color: var(--color-primary);
     color: #fff;
     transition: background-color .3s ease-in-out;
+    cursor: pointer;
 
     &:hover, &:focus, &:active {
         background-color: var(--color-primary-dark);

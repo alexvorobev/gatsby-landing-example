@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import useDeviceKind from "../../hooks/useDeviceKind";
 import { MobileHeader } from "./MobileHeader";
+import { DesktopHeader } from "./DesktopHeader";
 import styled from "@emotion/styled";
 
 export type NavMenuItemType = {
@@ -14,7 +15,8 @@ export type NavMenuType = {
 
 export type HeaderProps = {
     title?: string;
-    items?: NavMenuType;
+    items?: NavMenuItemType[];
+    callToAction?: string;
 }
 
 const HeaderWrapper = styled.header`
@@ -34,7 +36,7 @@ export const Header: FC<HeaderProps> = (props) => {
 
     return (
         <HeaderWrapper>
-            <h1>Desktop</h1>
+            <DesktopHeader {...props} />
         </HeaderWrapper>
     );
 };

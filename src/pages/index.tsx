@@ -2,6 +2,7 @@ import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { Header } from "../components/Header"
 import { GlobalStyles } from "../components/GlobalStyles"
+import data from "../data";
 
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -9,7 +10,11 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <GlobalStyles />
       <main>
-        <Header title='Курс английского языка' />
+        <Header
+          title={data.navMenu.title}
+          items={data.navMenu.items}
+          callToAction={data.callToAction}
+        />
       </main>
     </>
   )
