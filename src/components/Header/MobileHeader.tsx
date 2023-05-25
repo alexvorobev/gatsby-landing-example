@@ -157,9 +157,10 @@ type MenuProps = {
     isOpen: boolean;
     items?: NavMenuItemType[];
     onItemClick?: () => void;
+    callToAction?: string;
 }
 
-const Menu: FC<MenuProps> = ({ isOpen, items, onItemClick }) => {
+const Menu: FC<MenuProps> = ({ isOpen, callToAction, items, onItemClick }) => {
     const menuRef = React.useRef<HTMLDivElement>(null);
     const listRef = React.useRef<HTMLDivElement>(null);
 
@@ -178,6 +179,7 @@ const Menu: FC<MenuProps> = ({ isOpen, items, onItemClick }) => {
             {items?.map((item, index) => {
                 return <div key={index}>{item.title}</div>
             })}
+            {callToAction && <Button onClick={onItemClick}>{callToAction}</Button>}
         </MenuList>
     </MenuWrapper>
 }
@@ -212,12 +214,11 @@ export const MobileHeader: FC<HeaderProps> = ({
             <HeaderWrapper>
                 <HeaderTitle>{title}</HeaderTitle>
                 <RightSideGroup>
-                    {!!callToAction && <Button variant="secondary">{callToAction}</Button>}
                     <MenuButton onClick={toggleMenu} variant="secondary" rounded>
                         <Hamburger isOpen={isMenuOpen} />    
                     </MenuButton>
                 </RightSideGroup>
-                {isContentDisplayed && <Menu isOpen={isMenuOpen} items={items} />}
+                {isContentDisplayed && <Menu isOpen={isMenuOpen} items={items} callToAction={callToAction} />}
             </HeaderWrapper>
         </HeaderStyleContext>
     );
