@@ -9,6 +9,7 @@ import {
   FAQSection,
   CallToActionSection,
   TestimonialsSection,
+  ContentSection,
 } from '../components/sections';
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -40,6 +41,16 @@ const IndexPage: React.FC<PageProps> = () => {
             title={block.title}
             subtitle={block.subtitle}
             callToAction={block.callToAction}
+          />
+        );
+
+      case 'content':
+        return (
+          <ContentSection
+            title={block.title}
+            subtitle={block.subtitle}
+            content={block.content}
+            align={block.alignment}
           />
         );
       default:
