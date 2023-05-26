@@ -6,6 +6,10 @@ import * as FeatherIcons from 'react-icons/fi';
 const AdvantagesSectionWrapper = styled.section`
   padding: 3rem 0;
   text-align: center;
+
+  @media (min-width: 1024px) {
+    padding: 6rem 0;
+  }
 `;
 
 const AdvantagesSectionContainer = styled(Container)`
@@ -34,6 +38,7 @@ const AdvantagesSectionDescription = styled.p`
 
   @media (min-width: 1024px) {
     max-width: 50%;
+    margin-bottom: 5rem;
   }
 `;
 
@@ -59,7 +64,7 @@ const AdvantagesSectionListItemIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   background-color: var(--color-primary);
   color: var(--color-secondary);
   padding: 1rem;

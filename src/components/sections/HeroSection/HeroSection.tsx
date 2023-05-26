@@ -4,7 +4,13 @@ import { Container } from '../../Container';
 import { Button } from '../../Button';
 import { ScratchIcon } from '../../../icons';
 
-const HeroSectionWrapper = styled(Container)`
+const HeroSectionWrapper = styled.section`
+  @media (min-width: 1024px) {
+    background-color: var(--color-secondary);
+  }
+`;
+
+const HeroSectionContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +23,10 @@ const HeroSectionWrapper = styled(Container)`
     gap: 5rem;
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
+    min-height: max-content;
+    height: calc(100vh - 6rem);
+    max-height: 60rem;
+    box-sizing: border-box;
   }
 `;
 
@@ -95,20 +105,22 @@ interface HeroSectionProps {
 export const HeroSection: FC<HeroSectionProps> = ({ title, subtitle, callToAction }) => {
   return (
     <HeroSectionWrapper>
-      <HeroSectionContent>
-        <HeroSectionTitle>
-          {title}
-          <ScratchIcon height="2.5rem" width="100%" color="var(--color-primary)" />
-        </HeroSectionTitle>
-        <HeroSectionSubtitle>{subtitle}</HeroSectionSubtitle>
-        {callToAction && <HeroSectionButton rounded>{callToAction}</HeroSectionButton>}
-      </HeroSectionContent>
-      <HeroSectionImage>
-        <img
-          src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          alt=""
-        />
-      </HeroSectionImage>
+      <HeroSectionContainer>
+        <HeroSectionContent>
+          <HeroSectionTitle>
+            {title}
+            <ScratchIcon height="2.5rem" width="100%" color="var(--color-primary)" />
+          </HeroSectionTitle>
+          <HeroSectionSubtitle>{subtitle}</HeroSectionSubtitle>
+          {callToAction && <HeroSectionButton rounded>{callToAction}</HeroSectionButton>}
+        </HeroSectionContent>
+        <HeroSectionImage>
+          <img
+            src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt=""
+          />
+        </HeroSectionImage>
+      </HeroSectionContainer>
     </HeroSectionWrapper>
   );
 };
