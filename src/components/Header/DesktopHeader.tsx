@@ -31,12 +31,43 @@ const HeaderContent = styled(Container)`
   justify-content: space-between;
 `;
 
-export const DesktopHeader: FC<HeaderProps> = ({ title, callToAction }) => {
+const HeaderMenuList = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: center;
+`;
+
+const HeaderMenuItem = styled.a`
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease-in-out;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none !important;
+
+  @media (min-width: 1024px) {
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+`;
+
+
+export const DesktopHeader: FC<HeaderProps> = ({ title, items, callToAction }) => {
   return (
     <HeaderWrapper>
       <HeaderContent>
         <HeaderTitle>{title}</HeaderTitle>
-        <div>menu</div>
+        <HeaderMenuList>
+          {!!items && items.map((item, index) => (
+            <HeaderMenuItem href={`#${item.blockId}`} key={index}>
+              {item.title}
+            </HeaderMenuItem>
+          ))}
+        </HeaderMenuList>
         {!!callToAction && (
           <Button variant="secondary" rounded>
             {callToAction}
