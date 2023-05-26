@@ -35,11 +35,11 @@ export const GlobalStyles = () => (
 
       // Colors
       :root {
-        --color-primary: #3182ce;
+        --color-primary: #4f46e5;
         --color-primary-light: #63b3ed;
         --color-primary-dark: #2c5282;
         --color-secondary: rgba(241, 245, 249, 0.8);
-        --color-secondary-light: #fbd38d;
+        --color-secondary-light: rgba(241, 245, 249, 0.4);
         --color-secondary-dark: rgba(226, 232, 240, 1);
         --color-tertiary: #90cdf4;
         --color-tertiary-light: #bee3f8;
