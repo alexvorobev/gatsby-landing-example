@@ -3,8 +3,7 @@ import type { HeadFC, PageProps } from 'gatsby';
 import { Header } from '../components/Header';
 import { GlobalStyles } from '../components/GlobalStyles';
 import data from '../data';
-import { AdvantagesSection, HeroSection } from '../components/sections';
-import { FAQSection } from '../components/sections/FAQSection';
+import { AdvantagesSection, HeroSection, FAQSection, CallToActionSection } from '../components/sections';
 
 const IndexPage: React.FC<PageProps> = () => {
   const renderBlock = (block: any) => {
@@ -20,6 +19,15 @@ const IndexPage: React.FC<PageProps> = () => {
       case 'faq':
         return (
           <FAQSection title={block.title} subtitle={block.subtitle} questions={block.questions} />
+        );
+
+      case 'callToAction':
+        return (
+          <CallToActionSection
+            title={block.title}
+            subtitle={block.subtitle}
+            callToAction={block.callToAction}
+          />
         );
       default:
         return null;
