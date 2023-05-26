@@ -55,18 +55,18 @@ const HeaderMenuItem = styled.a`
   }
 `;
 
-
 export const DesktopHeader: FC<HeaderProps> = ({ title, items, callToAction }) => {
   return (
     <HeaderWrapper>
       <HeaderContent>
         <HeaderTitle>{title}</HeaderTitle>
         <HeaderMenuList>
-          {!!items && items.map((item, index) => (
-            <HeaderMenuItem href={`#${item.blockId}`} key={index}>
-              {item.title}
-            </HeaderMenuItem>
-          ))}
+          {!!items &&
+            items.map((item, index) => (
+              <HeaderMenuItem href={`#${item.blockId}`} key={index}>
+                {item.title}
+              </HeaderMenuItem>
+            ))}
         </HeaderMenuList>
         {!!callToAction && (
           <Button variant="secondary" rounded>

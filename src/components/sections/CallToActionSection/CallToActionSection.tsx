@@ -14,11 +14,11 @@ const CallToActionSectionContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-   max-width: 60rem;
-   padding: 2.25rem;
-   border-radius: 0.5rem;
-   color: #fff;
-   background-color: var(--color-primary);
+  max-width: 60rem;
+  padding: 2.25rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background-color: var(--color-primary);
 
   @media (min-width: 1024px) {
     flex-direction: row;
@@ -33,7 +33,7 @@ const CallToActionSectionTitle = styled.h2`
   line-height: 2rem;
   font-weight: 600;
   margin: 0 auto 0.5rem;
-  
+
   @media (min-width: 1024px) {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -56,9 +56,10 @@ const StyledButton = styled(Button)`
   background-color: #fff;
   font-size: 1.125rem;
   color: var(--color-primary);
-  padding: .75rem 2.75rem;
+  padding: 0.75rem 2.75rem;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: var(--color-secondary-dark);
   }
 
@@ -73,21 +74,22 @@ interface CallToActionSectionProps {
   callToAction: string;
 }
 
-export const CallToActionSection: FC<CallToActionSectionProps> = ({ title, subtitle, callToAction }) => {
-
+export const CallToActionSection: FC<CallToActionSectionProps> = ({
+  title,
+  subtitle,
+  callToAction,
+}) => {
   return (
     <CallToActionSectionWrapper>
-        <Container>
+      <Container>
         <CallToActionSectionContainer>
           <div>
             <CallToActionSectionTitle>{title}</CallToActionSectionTitle>
             <CallToActionSectionDescription>{subtitle}</CallToActionSectionDescription>
           </div>
-          <StyledButton>
-            {callToAction}
-          </StyledButton>
+          <StyledButton>{callToAction}</StyledButton>
         </CallToActionSectionContainer>
-    </Container>
-      </CallToActionSectionWrapper>
+      </Container>
+    </CallToActionSectionWrapper>
   );
 };
