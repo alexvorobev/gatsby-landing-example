@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
-import {FiSend} from 'react-icons/fi';
+import { FiSend } from 'react-icons/fi';
 
 import { Container } from '../../Container';
 import { Input } from '../../Input';
@@ -44,11 +44,11 @@ const ContactSectionDescription = styled.p`
 `;
 
 const ContactSectionFieldsList = styled.div`
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-end;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-end;
 `;
 
 interface ContactSectionProps {
@@ -66,9 +66,9 @@ export const ContactSection: FC<ContactSectionProps> = ({ title, subtitle, callT
           <ContactSectionDescription>{subtitle}</ContactSectionDescription>
         </div>
         <ContactSectionFieldsList>
-            <Input label='Имя' />
-            <Input label='Электронная почта'/>
-            <Button size='large'>{callToAction ?? <FiSend size={24} />}</Button>
+          <Input label="Имя" />
+          <Input label="Электронная почта" />
+          <Button size="large">{callToAction ?? <FiSend size={24} />}</Button>
         </ContactSectionFieldsList>
       </ContactSectionContainer>
     </ContactSectionWrapper>

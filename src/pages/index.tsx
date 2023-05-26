@@ -75,9 +75,11 @@ const IndexPage: React.FC<PageProps> = () => {
         {data.blocks.map((block: any) => (
           <React.Fragment key={block.id}>{renderBlock(block)}</React.Fragment>
         ))}
-        <ContactSection title={contactSection?.title} subtitle={contactSection?.subtitle}
+        <ContactSection
+          title={contactSection?.title}
+          subtitle={contactSection?.subtitle}
           callToAction={data.callToAction}
-          />
+        />
       </main>
       <Footer />
     </>
