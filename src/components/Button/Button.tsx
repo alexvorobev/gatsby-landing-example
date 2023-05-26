@@ -5,9 +5,10 @@ type ButtonProps = {
   children: React.ReactNode;
   rounded?: boolean;
   variant?: 'primary' | 'secondary';
+  size?: 'normal' | 'large';
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const StyledButton = styled.button<Pick<ButtonProps, 'rounded' | 'variant'>>`
+const StyledButton = styled.button<Pick<ButtonProps, 'rounded' | 'variant' | 'size'>>`
   padding: 0.35rem 1.75rem;
   border-radius: 0.375rem;
   font-size: 0.938rem;
@@ -42,6 +43,17 @@ const StyledButton = styled.button<Pick<ButtonProps, 'rounded' | 'variant'>>`
         border-radius: 6rem;
         height: auto;
         width: auto;
+    `}
+
+  ${({ size }) =>
+    size === 'large' &&
+    `
+      font-size: 1.125rem;
+      padding: 0.75rem 2.75rem;
+    
+      @media (min-width: 1024px) {
+        padding: 1rem 2rem;
+      }
     `}
 `;
 

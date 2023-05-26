@@ -86,6 +86,13 @@ const data = {
       ],
     },
     {
+      id: 'callToAction',
+      type: 'callToAction',
+      title: 'Запишитесь на курс английского языка на Пхукете с носителем прямо сейчас!',
+      subtitle: '',
+      callToAction: 'Зарегистрироваться',
+    },
+    {
       id: 'faq',
       type: 'faq',
       title: 'Часто задаваемые вопросы',
@@ -112,14 +119,7 @@ const data = {
       id: 'contact',
       type: 'contact',
       title: 'Напишите нам',
-      subtitle: '',
-    },
-    {
-      id: 'callToAction',
-      type: 'callToAction',
-      title: 'Запишитесь на курс английского языка на Пхукете с носителем прямо сейчас!',
-      subtitle: '',
-      callToAction: 'Зарегистрироваться',
+      subtitle: 'Напишите нам сейчас, чтобы начать свое увлекательное путешествие в мир английского языка!',
     },
   ],
 };

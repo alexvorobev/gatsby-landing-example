@@ -10,9 +10,13 @@ import {
   CallToActionSection,
   TestimonialsSection,
   ContentSection,
+  ContactSection,
 } from '../components/sections';
+import { Footer } from '../components/Footer';
 
 const IndexPage: React.FC<PageProps> = () => {
+  const contactSection = data.blocks.find((block: any) => block.type === 'contact');
+
   const renderBlock = (block: any) => {
     switch (block.type) {
       case 'features':
@@ -71,7 +75,11 @@ const IndexPage: React.FC<PageProps> = () => {
         {data.blocks.map((block: any) => (
           <React.Fragment key={block.id}>{renderBlock(block)}</React.Fragment>
         ))}
+        <ContactSection title={contactSection?.title} subtitle={contactSection?.subtitle}
+          callToAction={data.callToAction}
+          />
       </main>
+      <Footer />
     </>
   );
 };
