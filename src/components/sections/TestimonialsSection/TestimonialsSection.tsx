@@ -119,14 +119,17 @@ export const TestimonialsSection: FC<TestimonialsSectionProps> = ({
             <TestimonialsSectionListItem key={index}>
               <TestimonialsSectionListItemText>{testimonial.text}</TestimonialsSectionListItemText>
               <TestimonialFooter>
-                <TestimonialsSectionListItemIcon src={`https://100k-faces.glitch.me/random-image?id=${index}`} alt={testimonial.name} />
+                <TestimonialsSectionListItemIcon
+                  src={`https://100k-faces.glitch.me/random-image?id=${index}`}
+                  alt={testimonial.name}
+                />
                 <div>
-                <TestimonialsSectionListItemName>
-                  {testimonial.name}
-                </TestimonialsSectionListItemName>
-                <TestimonialsSectionListItemPosition>
-                  {testimonial.position}
-                </TestimonialsSectionListItemPosition>
+                  <TestimonialsSectionListItemName>
+                    {testimonial.name}
+                  </TestimonialsSectionListItemName>
+                  <TestimonialsSectionListItemPosition>
+                    {testimonial.position}
+                  </TestimonialsSectionListItemPosition>
                 </div>
               </TestimonialFooter>
             </TestimonialsSectionListItem>
