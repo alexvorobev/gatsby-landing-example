@@ -15,8 +15,6 @@ import {
 import { Footer } from '../components/Footer';
 
 const IndexPage: React.FC<PageProps> = () => {
-  const contactSection = data.blocks.find((block: any) => block.type === 'contact');
-
   const renderBlock = (block: any) => {
     switch (block.type) {
       case 'features':
@@ -67,7 +65,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <GlobalStyles />
       <main>
         <Header
-          title={data.navMenu.title}
+          title={data.title ?? ''}
           items={data.navMenu.items}
           callToAction={data.callToAction}
         />
@@ -76,8 +74,8 @@ const IndexPage: React.FC<PageProps> = () => {
           <React.Fragment key={block.id}>{renderBlock(block)}</React.Fragment>
         ))}
         <ContactSection
-          title={contactSection?.title}
-          subtitle={contactSection?.subtitle}
+          title={data.contactForm?.title}
+          subtitle={data.contactForm?.subtitle}
           callToAction={data.callToAction}
         />
       </main>

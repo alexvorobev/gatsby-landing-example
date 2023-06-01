@@ -116,7 +116,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ title, subtitle, callToActio
         </HeroSectionContent>
         <HeroSectionImage>
           <img
-            src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="https://images.pexels.com/photos/3732494/pexels-photo-3732494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt=""
           />
         </HeroSectionImage>
