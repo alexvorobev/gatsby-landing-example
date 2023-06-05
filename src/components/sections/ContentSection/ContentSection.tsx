@@ -105,7 +105,10 @@ interface ContentSectionProps {
   title: string;
   subtitle?: string;
   content?: string;
-  image?: string;
+  image?: {
+    url: string;
+    alt: string;
+  };
   align?: 'left' | 'right';
 }
 
@@ -113,6 +116,7 @@ export const ContentSection: FC<ContentSectionProps> = ({
   title,
   subtitle,
   content,
+  image,
   align = 'left',
 }) => {
   return (
@@ -126,8 +130,8 @@ export const ContentSection: FC<ContentSectionProps> = ({
         </ContentSectionContent>
         <ContentSectionImage>
           <img
-            src="https://images.pexels.com/photos/130159/pexels-photo-130159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="Education"
+            src={image?.url ?? 'https://via.placeholder.com/600x400'}
+            alt={image?.alt ?? ''}
           />
         </ContentSectionImage>
       </ContentSectionContainer>

@@ -99,10 +99,14 @@ const HeroSectionImage = styled.div`
 interface HeroSectionProps {
   title: string;
   subtitle?: string;
+  image?: {
+    url: string;
+    alt: string;
+  }
   callToAction?: string;
 }
 
-export const HeroSection: FC<HeroSectionProps> = ({ title, subtitle, callToAction }) => {
+export const HeroSection: FC<HeroSectionProps> = ({ title, subtitle, image, callToAction }) => {
   return (
     <HeroSectionWrapper>
       <HeroSectionContainer>
@@ -116,8 +120,8 @@ export const HeroSection: FC<HeroSectionProps> = ({ title, subtitle, callToActio
         </HeroSectionContent>
         <HeroSectionImage>
           <img
-            src="https://images.pexels.com/photos/3732494/pexels-photo-3732494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
+            src={image?.url ?? ''}
+            alt={image?.alt ?? ''}
           />
         </HeroSectionImage>
       </HeroSectionContainer>

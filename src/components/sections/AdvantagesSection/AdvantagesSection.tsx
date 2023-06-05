@@ -114,7 +114,7 @@ const snakeToPascal = (str: string) => {
 export const AdvantagesSection: FC<AdvantagesSectionProps> = ({ title, subtitle, features }) => {
   const getIcon = (icon: string) => {
     const iconKey = `Fi${snakeToPascal(icon)}`;
-    const Icon = FeatherIcons[iconKey as keyof typeof FeatherIcons];
+    const Icon = FeatherIcons[iconKey as keyof typeof FeatherIcons] ?? FeatherIcons.FiDisc;
 
     if (!Icon) {
       return null;

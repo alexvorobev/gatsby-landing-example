@@ -14,7 +14,21 @@ import {
 } from '../components/sections';
 import { Footer } from '../components/Footer';
 
-const IndexPage: React.FC<PageProps> = () => {
+const ALLOW_URL_DATA = true;
+
+const IndexPage: React.FC<PageProps> = ({ location }) => {
+  const [pageData, setPageData] = React.useState<any>({});
+  const params = React.useMemo(() => new URLSearchParams(location.search), [location]);
+  const urlData = React.useMemo(() => params.get('data'), []);
+
+  React.useEffect(() => {
+    if (ALLOW_URL_DATA && urlData) {
+      setPageData(JSON.parse(urlData));
+    } else {
+      setPageData(data);
+    }
+  }, [urlData]);
+
   const renderBlock = (block: any) => {
     switch (block.type) {
       case 'features':
@@ -53,6 +67,7 @@ const IndexPage: React.FC<PageProps> = () => {
             subtitle={block.subtitle}
             content={block.content}
             align={block.alignment}
+            image={block.images}
           />
         );
       default:
@@ -65,18 +80,18 @@ const IndexPage: React.FC<PageProps> = () => {
       <GlobalStyles />
       <main>
         <Header
-          title={data.title ?? ''}
-          items={data.navMenu.items}
-          callToAction={data.callToAction}
+          title={pageData?.title ?? ''}
+          items={pageData?.navMenu?.items}
+          callToAction={pageData?.callToAction}
         />
-        <HeroSection title={data.title} subtitle={data.subtitle} callToAction={data.callToAction} />
-        {data.blocks.map((block: any) => (
+        <HeroSection title={pageData?.title} subtitle={pageData?.subtitle} image={pageData?.img} callToAction={pageData?.callToAction} />
+        {pageData?.blocks?.map((block: any) => (
           <React.Fragment key={block.id}>{renderBlock(block)}</React.Fragment>
         ))}
         <ContactSection
-          title={data.contactForm?.title}
-          subtitle={data.contactForm?.subtitle}
-          callToAction={data.callToAction}
+          title={pageData?.contactForm?.title}
+          subtitle={pageData?.contactForm?.subtitle}
+          callToAction={pageData?.callToAction}
         />
       </main>
       <Footer />
