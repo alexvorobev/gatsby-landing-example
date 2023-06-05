@@ -125,7 +125,10 @@ export const ContentSection: FC<ContentSectionProps> = ({
           )}
         </ContentSectionContent>
         <ContentSectionImage>
-          <img src="https://images.pexels.com/photos/130159/pexels-photo-130159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Education" />
+          <img
+            src="https://images.pexels.com/photos/130159/pexels-photo-130159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Education"
+          />
         </ContentSectionImage>
       </ContentSectionContainer>
     </ContentSectionWrapper>
