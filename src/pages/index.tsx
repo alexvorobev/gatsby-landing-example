@@ -18,6 +18,7 @@ const ALLOW_URL_DATA = true;
 
 const IndexPage: React.FC<PageProps> = ({ location }) => {
   const [pageData, setPageData] = React.useState<any>({});
+  const mainRef = React.useRef<HTMLDivElement>(null);
   const params = React.useMemo(() => new URLSearchParams(location.search), [location]);
   const urlData = React.useMemo(() => params.get('data'), []);
 
@@ -28,6 +29,33 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
       setPageData(data);
     }
   }, [urlData]);
+
+  // send postMessage to parent window with page height
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (mainRef.current) {
+        const height = mainRef.current.offsetHeight;
+        window.parent.postMessage({ type: 'setHeight', height }, '*');
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (mainRef.current) {
+        const height = mainRef.current.offsetHeight;
+        window.parent.postMessage({ type: 'setHeight', height }, '*');
+      }
+    };
+
+    handleResize();
+  }, [pageData]);
 
   const renderBlock = (block: any) => {
     switch (block.type) {
@@ -76,7 +104,7 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
   };
 
   return (
-    <>
+    <div ref={mainRef}>
       <GlobalStyles />
       <main>
         <Header
@@ -95,7 +123,7 @@ const IndexPage: React.FC<PageProps> = ({ location }) => {
         />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
